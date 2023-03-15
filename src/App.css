@@ -1,0 +1,76 @@
+/* global css */
+* {
+  font-family: Lexend;
+  font-style: normal;
+}
+
+button {
+  border: none;
+  background: none;
+  font-size: 20px;
+}
+
+.app-header {
+  background-color: #24389E;
+  display: flex;
+  gap:10px;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.column {
+  float: left;
+  margin: auto;
+  padding-bottom: 1rem;
+}
+
+/* search box component styling */
+
+.search-section {
+  width: 40%;
+}
+
+.search-box input {
+  width:150px;
+  padding:10px;
+  min-width: 80%;
+  border-radius:5px;
+  border: none;
+}
+
+.search-box input:focus {
+  outline: none;      
+  box-shadow: 0 0 0 2px;
+}
+
+/* facet component styling */
+
+.facet-section {
+  width: 20%;
+  padding: 10px;
+}
+
+.facet {
+  border: 2px solid #8dcce8;
+  padding-left: 10px;
+  border-radius: 20px;
+}
+
+.facet h3 {
+  color: #24389E
+}
+
+.facet ul {
+  text-align: left;
+}
+
+.facet li:hover {
+  color: #1CEBCF
+}
+
+/* result list styling */
+
+.results-section {
+  width: 50%;
+}
