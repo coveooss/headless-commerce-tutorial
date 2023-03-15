@@ -1,4 +1,5 @@
 /* global css */
+
 * {
   font-family: Lexend;
   font-style: normal;
@@ -59,7 +60,6 @@ button {
   background-color: white;
   border-radius: 5px;
   width: 100%;
-  /* background-color: cadetblue; */
   z-index:1
 }
 .search-queries {
@@ -190,6 +190,7 @@ button {
 
 
 /* styling for sort component */
+
 .sort-select {
   padding: 10px; background:#85eee0; border:none;
   border-radius: 3px;
