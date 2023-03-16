@@ -35,7 +35,7 @@ function App() {
             <Facet controller={FacetController} title="Category" />
           </div>
           <div className="results-section column">
-          <ResultList controller={ResultListController} resultTemplatesManager={resultTemplatesManager}/>
+            <ResultList controller={ResultListController} resultTemplatesManager={resultTemplatesManager}/>
             <Pager controller={PagerController}/>
           </div>
         </div>
