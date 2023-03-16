@@ -1,30 +1,83 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import {SearchBox as SearchBoxController} from '@coveo/headless'
-
-
+import {
+  SearchBox as SearchBoxController,
+  InstantResults as InstantResultsController,
+} from '@coveo/headless';
+import {useEffect, useState} from 'react';
+ 
 interface SearchBoxProps {
-    controller: SearchBoxController
+  controllerSearchbox: SearchBoxController;
+  controllerInstantResults: InstantResultsController;
 }
+ 
+export const SearchBox: React.FC<SearchBoxProps> = (props) => {
+  const {controllerSearchbox, controllerInstantResults} = props;
+  const [searchboxState, setStateSearchbox] = useState(
+    controllerSearchbox.state
+  );
+  const [instantResultsState, setStateInstantResults] = useState(
+    controllerInstantResults.state
+  );
 
-const SearchBox: React.FC<SearchBoxProps> = (props) => {
-    const {controller} = props
-    const [state, setState] = useState(controller.state);
+  useEffect(
+    () =>
+      controllerSearchbox.subscribe(() =>
+        setStateSearchbox(controllerSearchbox.state)
+      ),
+    [controllerSearchbox]
+  );
+  useEffect(
+    () =>
+      controllerInstantResults.subscribe(() =>
+        setStateInstantResults(controllerInstantResults.state)
+      ),
+    [controllerInstantResults]
+  );
 
-    useEffect(
-      () => controller.subscribe(() => setState(controller.state)),
-      [controller]
-    );
-    return (
-      <div className='search-box'>
-          <input
-              placeholder='Search in Barca...'
-              value={state.value}
-              onChange={(e) => controller.updateText(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && controller.submit()}
-              />
+  return (
+    <div className="search-box">
+      <input
+        value={searchboxState.value}
+        onChange={(e) => controllerSearchbox.updateText(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            controllerSearchbox.submit();
+          } else if (e.key === 'Escape') {
+            controllerSearchbox.clear();
+            (e.target as HTMLInputElement).blur();
+          }
+        }}
+      />
+      <div className='search-results'>
+        {searchboxState.suggestions.length > 0 && (
+          <div className='search-queries'>
+            {searchboxState.suggestions.map((suggestion) => {
+              return (
+                <p
+                  key={suggestion.rawValue}
+                  onMouseEnter={() => controllerInstantResults.updateQuery(suggestion.rawValue)}
+                  onClick={() => controllerSearchbox.selectSuggestion(suggestion.rawValue)}
+                  dangerouslySetInnerHTML={{__html: suggestion.highlightedValue}}
+                ></p>
+              );
+            })}
+          </div>
+        )}
+        {instantResultsState.results.length > 0 && (
+          <div className='search-instant-results'>
+            {instantResultsState.results.map((result) => {
+            return (
+              <>
+                <h3>{result.title}</h3>
+                <p>{result.excerpt}</p>
+              </>
+            );
+          })}
+          </div>
+        )}        
       </div>
-    );
-  };
+    </div>
+
+  );
+};
 
 export default SearchBox
