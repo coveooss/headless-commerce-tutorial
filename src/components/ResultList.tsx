@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import {ResultList as ResultListController} from '@coveo/headless'
+import {ResultList as ResultListController, ResultTemplatesManager, Result} from '@coveo/headless'
 
 
 interface ResultListProps {
     controller: ResultListController,
+    resultTemplatesManager: ResultTemplatesManager<(result: Result) => JSX.Element>;
 }
 
 const ResultList: React.FC<ResultListProps> = (props) => {
-    const {controller} = props;
+  const {controller, resultTemplatesManager} = props;
     const [state, setState] = useState(controller.state);
   
     useEffect(
@@ -21,16 +22,14 @@ const ResultList: React.FC<ResultListProps> = (props) => {
       return (
         <div className="result-list">
           <ul>
-            {state.results.map((result) => (
-              <li key={result.uniqueId}>
-                <article>
-                  <h2>
-                      {result.title}
-                  </h2>
-                  <p>{result.excerpt}</p>
-                </article>
-              </li>
-            ))}
+            {state.results.map((result) => {
+              const template = resultTemplatesManager.selectTemplate(result);
+
+              if (!template)
+                throw new Error(`No result template provided for ${result.title}.`);
+
+              return template(result);
+            })}
           </ul>
         </div>
       );
