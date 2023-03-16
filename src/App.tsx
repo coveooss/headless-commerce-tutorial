@@ -4,10 +4,12 @@ import './App.css';
 import ResultList from './components/ResultList';
 import SearchBox from './components/SearchBox';
 import Facet from './components/Facet';
+import Pager from './components/Pager'
 import { 
   searchBox as SearchBoxController,
   resultList as ResultListController,
-  facet as FacetController
+  facet as FacetController,
+  pager as PagerController
    } from './controllers/controllers';
 import { headlessEngine } from './Engine';
 function App() {
@@ -33,6 +35,7 @@ function App() {
           </div>
           <div className="results-section column">
             <ResultList controller={ResultListController}/>
+            <Pager controller={PagerController}/>
           </div>
         </div>
       </div>
