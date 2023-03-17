@@ -20,11 +20,18 @@ declare global {
 }
 
 function App() {
+
+  const logViewEvent = () => {
+    coveoua('set', 'page', '/');
+    coveoua('send', 'pageview');
+
+  }
   
   useEffect(() => {
     const {logInterfaceLoad} = loadSearchAnalyticsActions(headlessEngine);
     const {executeSearch} = loadSearchActions(headlessEngine);
     headlessEngine.dispatch(executeSearch(logInterfaceLoad()));
+    logViewEvent();
   },[]);
 
   return (
