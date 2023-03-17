@@ -4,13 +4,16 @@ import './App.css';
 import ResultList from './components/ResultList';
 import SearchBox from './components/SearchBox';
 import Facet from './components/Facet';
-import Pager from './components/Pager'
+import Pager from './components/Pager';
+import Sort from './components/Sort';
 import { 
   searchBox as SearchBoxController,
   resultList as ResultListController,
   facet as FacetController,
   pager as PagerController,
-  instantResults as InstantResultsController
+  instantResults as InstantResultsController,
+  sort as SortController,
+  criteria as SortCriteria
    } from './controllers/controllers';
 import { resultTemplatesManager } from './controllers/resultTemplatesManager';
 import { headlessEngine } from './Engine';
@@ -48,6 +51,7 @@ function App() {
             <Facet controller={FacetController} title="Category" />
           </div>
           <div className="results-section column">
+            <Sort controller={SortController} criteria={SortCriteria} />
             <ResultList controller={ResultListController} resultTemplatesManager={resultTemplatesManager}/>
             <Pager controller={PagerController}/>
           </div>
