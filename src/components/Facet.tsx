@@ -16,32 +16,29 @@ const Facet: React.FC<FacetProps> = (props) => {
   );
 
   if (!state.values.length) {
+    return (null);
+  }
+  {
     return (
       <div className="facet">
-        <h3>{props.title}</h3>
-        <div>No facet values</div>
+        <h3 className='facet-title'>{props.title}</h3>
+        <ul>
+          {state.values.map((value) => (
+            <li key={value.value}>
+              <input
+                type="checkbox"
+                checked={controller.isValueSelected(value)}
+                onChange={() => controller.toggleSelect(value)}
+                disabled={state.isLoading}
+              />
+              {value.value} ({value.numberOfResults})
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
 
-  return (
-    <div className="facet">
-      <h3 className='facet-title'>{props.title}</h3>
-      <ul>
-        {state.values.map((value) => (
-          <li key={value.value}>
-            <input
-              type="checkbox"
-              checked={controller.isValueSelected(value)}
-              onChange={() => controller.toggleSelect(value)}
-              disabled={state.isLoading}
-            />
-            {value.value} ({value.numberOfResults})
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
 };
 
 export default Facet
