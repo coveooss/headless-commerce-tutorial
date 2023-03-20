@@ -20,5 +20,3 @@ export const facet = buildFacet(headlessEngine, {
 });
 
 export const pager = buildPager(headlessEngine);
-
-export const pager = buildPager(headlessEngine);
