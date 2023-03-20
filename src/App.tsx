@@ -6,6 +6,7 @@ import SearchBox from "./components/SearchBox";
 import Facet from "./components/Facet";
 import Pager from "./components/Pager";
 import Sort from "./components/Sort";
+import { FacetManager } from "./components/FacetManager";
 import {
   searchBox as SearchBoxController,
   resultList as ResultListController,
@@ -16,6 +17,7 @@ import {
   instantResults as InstantResultsController,
   sort as SortController,
   criteria as SortCriteria,
+  facetManager as FacetManagerController,
 } from "./controllers/controllers";
 import { resultTemplatesManager } from "./controllers/resultTemplatesManager";
 import { headlessEngine } from "./Engine";
@@ -51,9 +53,11 @@ function App() {
       <div className="app-body">
         <div className="main-section">
           <div className="facet-section column">
-            <Facet controller={CategoryFacetController} title="Category" />
-            <Facet controller={ColorFacetController} title="Color" />
-            <Facet controller={LevelFacetController} title="Level" />
+            <FacetManager controller={FacetManagerController}>
+              <Facet controller={CategoryFacetController} title="Category" />
+              <Facet controller={ColorFacetController} title="Color" />
+              <Facet controller={LevelFacetController} title="Level" />
+            </FacetManager>
           </div>
           <div className="results-section column">
             <Sort controller={SortController} criteria={SortCriteria} />
