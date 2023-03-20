@@ -21,10 +21,6 @@ export const instantResults = buildInstantResults(headlessEngine, {
   options: { maxResultsPerQuery: 1 },
 });
 
-export const facet = buildFacet(headlessEngine, {
-  options: { field: "ec_category" },
-});
-
 export const categoryFacet = buildFacet(headlessEngine, {
   options: { field: "ec_category" },
 });
