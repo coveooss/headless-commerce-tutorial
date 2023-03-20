@@ -32,7 +32,8 @@ const interactiveResult = (result: Result) => {
 }
 
 export const resultTemplatesManager: ResultTemplatesManager<
-    (result: Result) => JSX.Element> = buildResultTemplatesManager(headlessEngine);
+  (result: Result) => JSX.Element
+> = buildResultTemplatesManager(headlessEngine);
 
     resultTemplatesManager.registerTemplates({
         conditions: [],
