@@ -10,29 +10,27 @@ import {
   resultList as ResultListController,
   facet as FacetController,
   pager as PagerController,
-  instantResults as InstantResultsController
-   } from './controllers/controllers';
-import { resultTemplatesManager } from './controllers/resultTemplatesManager';
-import { headlessEngine } from './Engine';
+  instantResults as InstantResultsController,
+} from "./controllers/controllers";
+import { resultTemplatesManager } from "./controllers/resultTemplatesManager";
+import { headlessEngine } from "./Engine";
 
 declare global {
   function coveoua(action?: string, fieldName?: any, fieldValue?: any): any;
 }
 
 function App() {
-
   const logViewEvent = () => {
-    coveoua('set', 'page', '/');
-    coveoua('send', 'pageview');
+    coveoua("set", "page", "/");
+    coveoua("send", "pageview");
+  };
 
-  }
-  
   useEffect(() => {
     const { logInterfaceLoad } = loadSearchAnalyticsActions(headlessEngine);
     const { executeSearch } = loadSearchActions(headlessEngine);
     headlessEngine.dispatch(executeSearch(logInterfaceLoad()));
     logViewEvent();
-  },[]);
+  }, []);
 
   return (
     <div className="app">
