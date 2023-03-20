@@ -5,10 +5,12 @@ import ResultList from "./components/ResultList";
 import SearchBox from "./components/SearchBox";
 import Facet from "./components/Facet";
 import Pager from "./components/Pager";
+import Pager from "./components/Pager";
 import {
   searchBox as SearchBoxController,
   resultList as ResultListController,
   facet as FacetController,
+  pager as PagerController,
   pager as PagerController,
 } from "./controllers/controllers";
 import { resultTemplatesManager } from "./controllers/resultTemplatesManager";
