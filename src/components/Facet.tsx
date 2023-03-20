@@ -16,12 +16,12 @@ const Facet: React.FC<FacetProps> = (props) => {
   );
 
   if (!state.values.length) {
-    return (null);
+    return null;
   }
   {
     return (
       <div className="facet">
-        <h3 className='facet-title'>{props.title}</h3>
+        <h3 className="facet-title">{props.title}</h3>
         <ul>
           {state.values.map((value) => (
             <li key={value.value}>
@@ -38,7 +38,6 @@ const Facet: React.FC<FacetProps> = (props) => {
       </div>
     );
   }
-
 };
 
 export default Facet;
