@@ -1,26 +1,20 @@
 import {
-  FacetManager as HeadlessFacetManager,
+  FacetManager as FacetManagerController,
   Facet as HeadlessFacet,
   FacetManagerPayload,
 } from "@coveo/headless";
-import {
-  useEffect,
-  useState,
-  FunctionComponent,
-  ReactElement,
-  Children,
-} from "react";
+import { useEffect, useState, ReactElement, Children } from "react";
 
 type FacetManagerChild = ReactElement<{ controller: HeadlessFacet }>;
 
 interface FacetManagerProps {
-  controller: HeadlessFacetManager;
+  controller: FacetManagerController;
   children: FacetManagerChild | FacetManagerChild[];
 }
 
-export const FacetManager: FunctionComponent<FacetManagerProps> = (props) => {
+export const FacetManager: React.FC<FacetManagerProps> = (props) => {
   const { controller } = props;
-  const [, setState] = useState(controller.state);
+  const [state, setState] = useState(controller.state);
 
   useEffect(() => controller.subscribe(() => setState(controller.state)), []);
 
