@@ -1,22 +1,22 @@
-import { useEffect } from 'react';
-import { loadSearchActions, loadSearchAnalyticsActions } from '@coveo/headless';
-import './App.css';
-import ResultList from './components/ResultList';
-import SearchBox from './components/SearchBox';
-import Facet from './components/Facet';
-import Pager from './components/Pager';
-import Sort from './components/Sort';
-import { 
+import { useEffect } from "react";
+import { loadSearchActions, loadSearchAnalyticsActions } from "@coveo/headless";
+import "./App.css";
+import ResultList from "./components/ResultList";
+import SearchBox from "./components/SearchBox";
+import Facet from "./components/Facet";
+import Pager from "./components/Pager";
+import Sort from "./components/Sort";
+import {
   searchBox as SearchBoxController,
   resultList as ResultListController,
   facet as FacetController,
   pager as PagerController,
   instantResults as InstantResultsController,
   sort as SortController,
-  criteria as SortCriteria
-   } from './controllers/controllers';
-import { resultTemplatesManager } from './controllers/resultTemplatesManager';
-import { headlessEngine } from './Engine';
+  criteria as SortCriteria,
+} from "./controllers/controllers";
+import { resultTemplatesManager } from "./controllers/resultTemplatesManager";
+import { headlessEngine } from "./Engine";
 
 declare global {
   function coveoua(action?: string, fieldName?: any, fieldValue?: any): any;
@@ -53,8 +53,11 @@ function App() {
           </div>
           <div className="results-section column">
             <Sort controller={SortController} criteria={SortCriteria} />
-            <ResultList controller={ResultListController} resultTemplatesManager={resultTemplatesManager}/>
-            <Pager controller={PagerController}/>
+            <ResultList
+              controller={ResultListController}
+              resultTemplatesManager={resultTemplatesManager}
+            />
+            <Pager controller={PagerController} />
           </div>
         </div>
       </div>
