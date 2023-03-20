@@ -35,4 +35,4 @@ const ResultList: React.FC<ResultListProps> = (props) => {
       );
     };
 
-export default ResultList
+export default ResultList;
