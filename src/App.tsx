@@ -23,26 +23,27 @@ declare global {
 }
 
 function App() {
-
   const logViewEvent = () => {
-    coveoua('set', 'page', '/');
-    coveoua('send', 'pageview');
+    coveoua("set", "page", "/");
+    coveoua("send", "pageview");
+  };
 
-  }
-  
   useEffect(() => {
-    const {logInterfaceLoad} = loadSearchAnalyticsActions(headlessEngine);
-    const {executeSearch} = loadSearchActions(headlessEngine);
+    const { logInterfaceLoad } = loadSearchAnalyticsActions(headlessEngine);
+    const { executeSearch } = loadSearchActions(headlessEngine);
     headlessEngine.dispatch(executeSearch(logInterfaceLoad()));
     logViewEvent();
-  },[]);
+  }, []);
 
   return (
     <div className="app">
       <header className="app-header">
-        <img src={require('./assets/barca.svg').default} alt='barcaLogo' />
+        <img src={require("./assets/barca.svg").default} alt="barcaLogo" />
         <div className="search-section">
-          <SearchBox controllerSearchbox={SearchBoxController} controllerInstantResults={InstantResultsController} />
+          <SearchBox
+            controllerSearchbox={SearchBoxController}
+            controllerInstantResults={InstantResultsController}
+          />
         </div>
       </header>
       <div className="app-body">

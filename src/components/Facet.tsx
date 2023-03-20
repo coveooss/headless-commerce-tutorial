@@ -1,5 +1,5 @@
-import {Facet as FacetController} from '@coveo/headless';
-import {useEffect, useState} from 'react';
+import { Facet as FacetController } from "@coveo/headless";
+import { useEffect, useState } from "react";
 
 interface FacetProps {
   controller: FacetController;
@@ -7,7 +7,7 @@ interface FacetProps {
 }
 
 const Facet: React.FC<FacetProps> = (props) => {
-  const {controller} = props;
+  const { controller } = props;
   const [state, setState] = useState(controller.state);
 
   useEffect(
@@ -26,7 +26,7 @@ const Facet: React.FC<FacetProps> = (props) => {
 
   return (
     <div className="facet">
-      <h3 className='facet-title'>{props.title}</h3>
+      <h3 className="facet-title">{props.title}</h3>
       <ul>
         {state.values.map((value) => (
           <li key={value.value}>
@@ -44,4 +44,4 @@ const Facet: React.FC<FacetProps> = (props) => {
   );
 };
 
-export default Facet
+export default Facet;
