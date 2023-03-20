@@ -12,9 +12,9 @@ button {
 }
 
 .app-header {
-  background-color: #24389E;
+  background-color: #24389e;
   display: flex;
-  gap:30px;
+  gap: 30px;
   justify-content: center;
   align-items: center;
   height: 100px;
@@ -32,7 +32,7 @@ button {
   width: 25%;
   align-self: flex-start;
   position: relative;
-  top:30px
+  top: 30px;
 }
 
 .search-box {
@@ -41,17 +41,17 @@ button {
   flex-direction: column;
 }
 
-.search-box input{
-  flex:none;
+.search-box input {
+  flex: none;
   width: 100%;
-  padding:10px;
+  padding: 10px;
   box-sizing: border-box;
-  border-radius:5px;
+  border-radius: 5px;
   border: none;
 }
 
 .search-box input:focus {
-  outline: none;      
+  outline: none;
   box-shadow: 0 0 0 2px;
 }
 
@@ -60,12 +60,12 @@ button {
   background-color: white;
   border-radius: 5px;
   width: 100%;
-  z-index:1
+  z-index: 1;
 }
 .search-queries {
   width: 100%;
   border: #e2e0db 2px solid;
-  border-right :0;
+  border-right: 0;
 }
 
 .search-queries p {
@@ -73,7 +73,7 @@ button {
 }
 
 .search-queries p:hover {
-  background-color: #FAF9F6;
+  background-color: #faf9f6;
 }
 
 .search-instant-results {
@@ -84,7 +84,7 @@ button {
   border-top: #e2e0db 2px solid;
   border-left: #e2e0db 2px dotted;
   border-right: #e2e0db 2px solid;
-  z-index:1
+  z-index: 1;
 }
 
 /* facet component styling */
@@ -104,7 +104,7 @@ button {
 }
 
 .facet h3 {
-  color: #24389E
+  color: #24389e;
 }
 
 .facet ul {
@@ -112,7 +112,7 @@ button {
 }
 
 .facet li:hover {
-  color: #1CEBCF
+  color: #1cebcf;
 }
 
 /* styling for result list component */
@@ -131,10 +131,10 @@ button {
   position: relative;
   height: 40px;
   width: 120px;
-  background-color: #00ADFF;
+  background-color: #00adff;
   border: none;
   font-size: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0px;
   text-align: center;
   -webkit-transition-duration: 0.4s; /* Safari */
@@ -147,22 +147,22 @@ button {
 
 .result-button:after {
   content: "";
-  background: #00ADFF;
+  background: #00adff;
   display: block;
   position: absolute;
   padding-top: 300%;
   padding-left: 350%;
-  margin-left: -20px!important;
+  margin-left: -20px !important;
   margin-top: -120%;
   opacity: 0;
-  transition: all 0.8s
+  transition: all 0.8s;
 }
 
 .result-button:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
-  transition: 0s
+  transition: 0s;
 }
 
 /* styling for pager component */
@@ -173,25 +173,29 @@ button {
 }
 
 .pager-arrow {
-  color: #24389E;
+  color: #24389e;
 }
 
-.pager-number:active, .pager-number:focus, .pager-number:disabled {
+.pager-number:active,
+.pager-number:focus,
+.pager-number:disabled {
   background-color: #8dcce8;
   border-radius: 5px;
   color: black;
 }
 
-.pager-number:hover, .pager-arrow:hover {
-  border: 2px solid  #8dcce8;
+.pager-number:hover,
+.pager-arrow:hover {
+  border: 2px solid #8dcce8;
   border-radius: 5px;
-  cursor: pointer
-} 
-
+  cursor: pointer;
+}
 
 /* styling for sort component */
 
 .sort-select {
-  padding: 10px; background:#85eee0; border:none;
+  padding: 10px;
+  background: #85eee0;
+  border: none;
   border-radius: 3px;
 }
