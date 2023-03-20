@@ -43,6 +43,11 @@ function App() {
               resultTemplatesManager={resultTemplatesManager}
             />
             <Pager controller={PagerController} />
+            <ResultList
+              controller={ResultListController}
+              resultTemplatesManager={resultTemplatesManager}
+            />
+            <Pager controller={PagerController} />
           </div>
         </div>
       </div>
