@@ -15,17 +15,16 @@ import {
 import { resultTemplatesManager } from './controllers/resultTemplatesManager';
 import { headlessEngine } from './Engine';
 function App() {
-  
   useEffect(() => {
-    const {logInterfaceLoad} = loadSearchAnalyticsActions(headlessEngine);
-    const {executeSearch} = loadSearchActions(headlessEngine);
+    const { logInterfaceLoad } = loadSearchAnalyticsActions(headlessEngine);
+    const { executeSearch } = loadSearchActions(headlessEngine);
     headlessEngine.dispatch(executeSearch(logInterfaceLoad()));
-  },[]);
+  }, []);
 
   return (
     <div className="app">
       <header className="app-header">
-        <img src={require('./assets/barca.svg').default} alt='barcaLogo' />
+        <img src={require("./assets/barca.svg").default} alt="barcaLogo" />
         <div className="search-section">
           <SearchBox controllerSearchbox={SearchBoxController} controllerInstantResults={InstantResultsController} />
         </div>
