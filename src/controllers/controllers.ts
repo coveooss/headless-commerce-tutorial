@@ -26,7 +26,6 @@ export const facet = buildFacet(headlessEngine, {
 });
 
 export const pager = buildPager(headlessEngine);
-
 export const criteria: [string, SortCriterion][] = [
   ["Relevance", buildRelevanceSortCriterion()],
   ["Date (Ascending)", buildDateSortCriterion(SortOrder.Ascending)],
