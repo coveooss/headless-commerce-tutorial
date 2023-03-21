@@ -15,8 +15,10 @@ import {
   instantResults as InstantResultsController,
   sort as SortController,
   criteria as SortCriteria,
+  facetManager as FacetManagerController,
 } from "./controllers/controllers";
 import { headlessEngine } from "./Engine";
+import { FacetManager } from "./components/FacetManager";
 
 declare global {
   function coveoua(action?: string, fieldName?: any, fieldValue?: any): any;
@@ -47,9 +49,11 @@ function App() {
       <div className="app-body">
         <div className="main-section">
           <div className="facet-section column">
-            <Facet controller={CategoryFacetController} title="Category" />
-            <Facet controller={ColorFacetController} title="Color" />
-            <Facet controller={LevelFacetController} title="Level" />
+            <FacetManager controller={FacetManagerController}>
+              <Facet controller={CategoryFacetController} title="Category" />
+              <Facet controller={ColorFacetController} title="Color" />
+              <Facet controller={LevelFacetController} title="Level" />
+            </FacetManager>
           </div>
           <div className="results-section column">
             <Sort controller={SortController} criteria={SortCriteria} />
