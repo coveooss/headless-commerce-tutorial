@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { loadSearchActions, loadSearchAnalyticsActions } from "@coveo/headless";
 import "./App.css";
 import ResultList from "./components/ResultList";
 import SearchBox from "./components/SearchBox";
@@ -15,7 +14,6 @@ import {
   sort as SortController,
   criteria as SortCriteria,
 } from "./controllers/controllers";
-import { resultTemplatesManager } from "./controllers/resultTemplatesManager";
 import { headlessEngine } from "./Engine";
 
 declare global {
