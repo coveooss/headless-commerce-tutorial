@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { loadSearchActions, loadSearchAnalyticsActions } from "@coveo/headless";
 import "./App.css";
 import ResultList from "./components/ResultList";
 import SearchBox from "./components/SearchBox";
@@ -12,7 +11,6 @@ import {
   pager as PagerController,
   instantResults as InstantResultsController,
 } from "./controllers/controllers";
-import { resultTemplatesManager } from "./controllers/resultTemplatesManager";
 import { headlessEngine } from "./Engine";
 
 declare global {
@@ -47,15 +45,7 @@ function App() {
             <Facet controller={FacetController} title="Category" />
           </div>
           <div className="results-section column">
-            <ResultList
-              controller={ResultListController}
-              resultTemplatesManager={resultTemplatesManager}
-            />
-            <Pager controller={PagerController} />
-            <ResultList
-              controller={ResultListController}
-              resultTemplatesManager={resultTemplatesManager}
-            />
+            <ResultList controller={ResultListController} />
             <Pager controller={PagerController} />
           </div>
         </div>
