@@ -11,9 +11,15 @@ interface ResultListProps {
 }
 
 const sendAddToCartEvent = (result: Result) => {
+  const ec_category:String = (result.raw.ec_category as string[]).join("|")
   coveoua("ec:addProduct", {
     id: result.uniqueId,
     name: result.title,
+    brand: result.raw.ec_brand,
+    category: ec_category,
+    price: result.raw.ec_price,
+    variant: result.raw.ec_variant_sku,
+    quantity: "1",
   });
   coveoua("ec:setAction", "add", {
     list: headlessEngine.state.search.response.searchUid,
