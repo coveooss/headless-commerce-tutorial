@@ -1,19 +1,64 @@
 import { useState, useEffect } from "react";
 import {
   ResultList as ResultListController,
-  ResultTemplatesManager,
   Result,
+  buildInteractiveResult,
 } from "@coveo/headless";
+import { headlessEngine } from "../Engine";
 
 interface ResultListProps {
   controller: ResultListController;
-  resultTemplatesManager: ResultTemplatesManager<
-    (result: Result) => JSX.Element
-  >;
 }
 
+const sendAddToCartEvent = (result: Result) => {
+  const ec_category: String = (result.raw.ec_category as string[]).join("|");
+  coveoua("ec:addProduct", {
+    id: result.uniqueId,
+    name: result.title,
+    brand: result.raw.ec_brand,
+    category: ec_category,
+    price: result.raw.ec_price,
+    variant: result.raw.ec_variant_sku,
+    quantity: "1",
+  });
+  coveoua("ec:setAction", "add", {
+    list: headlessEngine.state.search.response.searchUid,
+  });
+  coveoua("send", "event");
+};
+
+const sportsResultsTemplate = (result: Result) => {
+  const interactiveResultController = buildInteractiveResult(headlessEngine, {
+    options: { result: result },
+  });
+  return (
+    <li key={result.uniqueId}>
+      <div>
+        <div className="result-item-header">
+          <a href="#" onClick={() => interactiveResultController.select()}>
+            {result.title}
+          </a>
+          <button
+            className="result-button"
+            onClick={() => sendAddToCartEvent(result)}
+          >
+            Add to cart
+          </button>
+        </div>
+        <p>
+          {result.excerpt} {result.raw.source}
+        </p>
+      </div>
+    </li>
+  );
+};
+
+const defaultResultsTemplate = (result: Result) => {
+  return <p>{result.title}</p>;
+};
+
 const ResultList: React.FC<ResultListProps> = (props) => {
-  const { controller, resultTemplatesManager } = props;
+  const { controller } = props;
   const [state, setState] = useState(controller.state);
 
   useEffect(
@@ -28,12 +73,11 @@ const ResultList: React.FC<ResultListProps> = (props) => {
     <div className="result-list">
       <ul>
         {state.results.map((result) => {
-          const template = resultTemplatesManager.selectTemplate(result);
-
-          if (!template)
-            throw new Error(`No result template provided for ${result.title}.`);
-
-          return template(result);
+          if (result.raw.source === "Sports") {
+            return sportsResultsTemplate(result);
+          } else {
+            return defaultResultsTemplate(result);
+          }
         })}
       </ul>
     </div>
