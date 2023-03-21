@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import { ResultList as ResultListController, Result, buildInteractiveResult, } from "@coveo/headless";
+import {
+  ResultList as ResultListController,
+  Result,
+  buildInteractiveResult,
+} from "@coveo/headless";
 import { headlessEngine } from "../Engine";
 
 interface ResultListProps {
@@ -17,24 +21,23 @@ const sendAddToCartEvent = (result: Result) => {
   coveoua("send", "event");
 };
 
-const interactiveResult = (result: Result) => {
+const sportsResultsTemplate = (result: Result) => {
   const interactiveResultController = buildInteractiveResult(headlessEngine, {
     options: { result: result },
   });
   return (
-    <a href="#" onClick={() => interactiveResultController.select()}>
-      {result.title}
-    </a>
-  );
-};
-
-const sportsResultsTemplate = (result: Result) => {
-  return (
     <li key={result.uniqueId}>
       <div>
         <div className="result-item-header">
-          <h2>{result.title}</h2>
-          <button className="result-button">Add to cart</button>
+          <a href="#" onClick={() => interactiveResultController.select()}>
+            {result.title}
+          </a>
+          <button
+            className="result-button"
+            onClick={() => sendAddToCartEvent(result)}
+          >
+            Add to cart
+          </button>
         </div>
         <p>
           {result.excerpt} {result.raw.source}
