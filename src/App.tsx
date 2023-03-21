@@ -15,9 +15,7 @@ import { resultTemplatesManager } from "./controllers/resultTemplatesManager";
 import { headlessEngine } from "./Engine";
 function App() {
   useEffect(() => {
-    const { logInterfaceLoad } = loadSearchAnalyticsActions(headlessEngine);
-    const { executeSearch } = loadSearchActions(headlessEngine);
-    headlessEngine.dispatch(executeSearch(logInterfaceLoad()));
+    headlessEngine.executeFirstSearch();
   }, []);
 
   return (
