@@ -1,19 +1,32 @@
 import { useState, useEffect } from "react";
-import {
-  ResultList as ResultListController,
-  ResultTemplatesManager,
-  Result,
-} from "@coveo/headless";
+import { ResultList as ResultListController, Result } from "@coveo/headless";
 
 interface ResultListProps {
   controller: ResultListController;
-  resultTemplatesManager: ResultTemplatesManager<
-    (result: Result) => JSX.Element
-  >;
 }
 
+const sportsResultsTemplate = (result: Result) => {
+  return (
+    <li key={result.uniqueId}>
+      <div>
+        <div className="result-item-header">
+          <h2>{result.title}</h2>
+          <button className="result-button">Add to cart</button>
+        </div>
+        <p>
+          {result.excerpt} {result.raw.source}
+        </p>
+      </div>
+    </li>
+  );
+};
+
+const defaultResultsTemplate = (result: Result) => {
+  return <p>{result.title}</p>;
+};
+
 const ResultList: React.FC<ResultListProps> = (props) => {
-  const { controller, resultTemplatesManager } = props;
+  const { controller } = props;
   const [state, setState] = useState(controller.state);
 
   useEffect(
@@ -28,12 +41,11 @@ const ResultList: React.FC<ResultListProps> = (props) => {
     <div className="result-list">
       <ul>
         {state.results.map((result) => {
-          const template = resultTemplatesManager.selectTemplate(result);
-
-          if (!template)
-            throw new Error(`No result template provided for ${result.title}.`);
-
-          return template(result);
+          if (result.raw.source === "Sports") {
+            return sportsResultsTemplate(result);
+          } else {
+            return defaultResultsTemplate(result);
+          }
         })}
       </ul>
     </div>
