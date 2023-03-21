@@ -9,7 +9,7 @@ import {
   resultList as ResultListController,
   facet as FacetController,
   pager as PagerController,
-  pager as PagerController,
+  instantResults as InstantResultsController,
 } from "./controllers/controllers";
 import { headlessEngine } from "./Engine";
 function App() {
@@ -34,10 +34,7 @@ function App() {
             <Facet controller={FacetController} title="Category" />
           </div>
           <div className="results-section column">
-            <ResultList
-              controller={ResultListController}
-              resultTemplatesManager={resultTemplatesManager}
-            />
+            <ResultList controller={ResultListController} />
             <Pager controller={PagerController} />
           </div>
         </div>
