@@ -11,7 +11,7 @@ interface ResultListProps {
 }
 
 const sendAddToCartEvent = (result: Result) => {
-  const ec_category:String = (result.raw.ec_category as string[]).join("|")
+  const ec_category: String = (result.raw.ec_category as string[]).join("|");
   coveoua("ec:addProduct", {
     id: result.uniqueId,
     name: result.title,

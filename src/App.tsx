@@ -49,10 +49,7 @@ function App() {
           </div>
           <div className="results-section column">
             <Sort controller={SortController} criteria={SortCriteria} />
-            <ResultList
-              controller={ResultListController}
-              resultTemplatesManager={resultTemplatesManager}
-            />
+            <ResultList controller={ResultListController} />
             <Pager controller={PagerController} />
           </div>
         </div>
