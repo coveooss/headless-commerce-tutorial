@@ -5,6 +5,7 @@ import SearchBox from "./components/SearchBox";
 import Facet from "./components/Facet";
 import Pager from "./components/Pager";
 import Sort from "./components/Sort";
+import FreqViewedList from "./components/FreqViewedList"
 import {
   searchBox as SearchBoxController,
   resultList as ResultListController,
@@ -15,6 +16,7 @@ import {
   instantResults as InstantResultsController,
   sort as SortController,
   criteria as SortCriteria,
+  frequentlyViewedTogetherList
 } from "./controllers/controllers";
 import { headlessEngine } from "./Engine";
 
@@ -55,6 +57,7 @@ function App() {
             <Sort controller={SortController} criteria={SortCriteria} />
             <ResultList controller={ResultListController} />
             <Pager controller={PagerController} />
+            {/* <FreqViewedList controller={frequentlyViewedTogetherList} /> */}
           </div>
         </div>
       </div>

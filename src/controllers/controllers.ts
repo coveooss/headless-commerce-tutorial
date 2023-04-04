@@ -12,7 +12,9 @@ import {
   SortOrder,
   buildSort,
 } from "@coveo/headless";
+import { buildFrequentlyViewedTogetherList } from "@coveo/headless/product-recommendation";
 import { headlessEngine } from "../Engine";
+import { productRecommendationsEngine } from "../Engine";
 
 export const searchBox: SearchBox = buildSearchBox(headlessEngine);
 
@@ -42,3 +44,12 @@ const initialCriterion = criteria[0][1];
 export const sort = buildSort(headlessEngine, {
   initialState: { criterion: initialCriterion },
 });
+
+export const frequentlyViewedTogetherList = buildFrequentlyViewedTogetherList(
+  productRecommendationsEngine,
+  {
+    options: {
+      maxNumberOfRecommendations: 3,
+    },
+  }
+);
