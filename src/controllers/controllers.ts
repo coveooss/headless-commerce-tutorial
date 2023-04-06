@@ -55,7 +55,7 @@ export const frequentlyViewedTogether = buildFrequentlyViewedTogetherList(
   frequentlyViewedTogetherPREngine,
   {
     options: {
-      maxNumberOfRecommendations: 5,
+      maxNumberOfRecommendations: 4,
     },
   }
 );
@@ -64,9 +64,7 @@ export const cartRecommendations = buildCartRecommendationsList(
   cartRecommendationsPREngine,
   {
     options: {
-      maxNumberOfRecommendations: 5,
-    },
+      maxNumberOfRecommendations: 3,
+    }
   }
 );
-
-// console.log(productRecommendationsEngine)

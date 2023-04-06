@@ -9,8 +9,8 @@ import {
 function ProductDetailPage() {
   let { result } = useLocation().state;
   if (result.permanentid == null) result = result.raw;
-  const productID = result.permanentid as string;
   console.log(result)
+  const productID = result.permanentid as string;
   return (
     <div className="pdp-section">
       <div className="product">
