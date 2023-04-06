@@ -6,6 +6,8 @@ import {
 } from "@coveo/headless";
 import {
   buildProductRecommendationEngine,
+  loadClickAnalyticsActions,
+  ProductRecommendation,
   ProductRecommendationEngine,
 } from "@coveo/headless/product-recommendation";
 
@@ -55,21 +57,26 @@ export const headlessEngine = registerAdditionalFields(
   createSearchEngine
 ) as SearchEngine;
 
-export const createPREngine = buildProductRecommendationEngine({
-  configuration: {
-    organizationId: "barcagroupproductionkwvdy6lp",
-    accessToken: "xx5a7943ef-ea52-42e5-8742-51198cc651f7",
-  },
-});
+const createPREngine = () =>
+  buildProductRecommendationEngine({
+    configuration: {
+      organizationId: "barcagroupproductionkwvdy6lp",
+      accessToken: "xx5a7943ef-ea52-42e5-8742-51198cc651f7",
+    },
+  });
 
-// export const createPREngine = buildProductRecommendationEngine({
-//   configuration: {
-//     accessToken: 'xxc23ce82a-3733-496e-b37e-9736168c4fd9',
-//     organizationId: 'electronicscoveodemocomo0n2fu8v',
-//     platformUrl: 'https://platform.cloud.coveo.com',
-//   },
-// });
-
-export const productRecommendationsEngine = registerAdditionalFields(
-  createPREngine
+export const frequentlyViewedTogetherPREngine = registerAdditionalFields(
+  createPREngine()
 ) as ProductRecommendationEngine;
+
+export const cartRecommendationsPREngine = registerAdditionalFields(
+  createPREngine()
+) as ProductRecommendationEngine;
+
+export const logRecsClick = (
+  recommendation: ProductRecommendation,
+  engine: ProductRecommendationEngine
+) => {
+  const { logProductRecommendationOpen } = loadClickAnalyticsActions(engine);
+  engine.dispatch(logProductRecommendationOpen(recommendation));
+};

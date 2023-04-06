@@ -1,36 +1,43 @@
 import { useLocation } from "react-router-dom";
-import { FreqViewedList } from "./FreqViewedList";
-import { frequentlyViewedTogetherList as frequentlyViewedTogetherListController } from "../controllers/controllers";
+import { FreqViewedTogether } from "./Recommendations/FreqViewedTogether";
+import CartRecommendations from "./Recommendations/CartRecommendations";
+import {
+  frequentlyViewedTogether as frequentlyViewedTogetherController,
+  cartRecommendations as CartRecommendationsController,
+} from "../controllers/controllers";
 
 function ProductDetailPage() {
-  const { result } = useLocation().state;
-  console.log(result);
-  const productID = result.raw.permanentid as string;
+  let { result } = useLocation().state;
+  if (result.permanentid == null) result = result.raw;
+  const productID = result.permanentid as string;
+  console.log(result)
   return (
     <div className="pdp-section">
       <div className="product">
         <div className="product-heading">
-          <h1>{result.title}</h1>
-          <p>${result.raw.ec_price as string}</p>
+          <h1>{result.ec_name}</h1>
+          <p>${result.ec_price as string}</p>
         </div>
 
         <div className="product-info">
           <p>
-            <strong>BRAND:</strong> {result.raw.ec_brand as string}
+            <strong>BRAND:</strong> {result.ec_brand as string}
           </p>
           <p>
-            <strong>RATING:</strong> {result.raw.ec_rating as string} stars
+            <strong>RATING:</strong> {result.ec_rating as string} stars
           </p>
           <p>
             <strong>PRODUCT-ID:</strong> {productID}
           </p>
-          {result.raw.ec_description as string}
         </div>
       </div>
       <div className="recs-section">
-        <h2>People also viewed</h2>
-        <FreqViewedList
-          controller={frequentlyViewedTogetherListController}
+        <FreqViewedTogether
+          controller={frequentlyViewedTogetherController}
+          productID={productID}
+        />
+        <CartRecommendations
+          controller={CartRecommendationsController}
           productID={productID}
         />
       </div>

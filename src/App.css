@@ -200,12 +200,11 @@ button {
   border-radius: 3px;
 }
 
-/* PDP component */
+/* styling for PDP */
 
 .pdp-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -221,6 +220,22 @@ button {
 }
 
 .product-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* styling for recs */
+.recs-section {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.recs-list {
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid#00adff;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
