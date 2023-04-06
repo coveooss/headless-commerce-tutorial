@@ -1,15 +1,10 @@
-import { useLocation } from "react-router-dom";
-import { FreqViewedTogether } from "./Recommendations/FreqViewedTogether";
-import CartRecommendations from "./Recommendations/CartRecommendations";
-import {
-  frequentlyViewedTogether as frequentlyViewedTogetherController,
-  cartRecommendations as CartRecommendationsController,
-} from "../controllers/controllers";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ProductDetailPage() {
+  const navigate = useNavigate();
   let { result } = useLocation().state;
   if (result.permanentid == null) result = result.raw;
-  console.log(result)
+  console.log(result);
   const productID = result.permanentid as string;
   return (
     <div className="pdp-section">
@@ -31,16 +26,9 @@ function ProductDetailPage() {
           </p>
         </div>
       </div>
-      <div className="recs-section">
-        <FreqViewedTogether
-          controller={frequentlyViewedTogetherController}
-          productID={productID}
-        />
-        <CartRecommendations
-          controller={CartRecommendationsController}
-          productID={productID}
-        />
-      </div>
+      <button className="back-to-search" onClick={() => navigate("/")}>
+        Back to search
+      </button>
     </div>
   );
 }
