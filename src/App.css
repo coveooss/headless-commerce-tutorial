@@ -199,3 +199,29 @@ button {
   border: none;
   border-radius: 3px;
 }
+
+/* PDP component */
+
+.pdp-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.product {
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid#00adff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.product-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

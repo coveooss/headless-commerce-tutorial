@@ -1,17 +1,19 @@
 import {
-  FrequentlyViewedTogetherList,
+  FrequentlyViewedDifferentCategoryList,
   loadClickAnalyticsActions,
   ProductRecommendation,
 } from "@coveo/headless/product-recommendation";
 import { useEffect, useState } from "react";
 import { productRecommendationsEngine } from "../Engine";
 
-interface FreqViewedListProps {
-  controller: FrequentlyViewedTogetherList;
+interface FreqViewedDifferentCateogyListProps {
+  controller: FrequentlyViewedDifferentCategoryList;
   productID: string;
 }
 
-export const FreqViewedList: React.FC<FreqViewedListProps> = (props) => {
+export const FreqViewedDifferentCategory: React.FC<
+  FreqViewedDifferentCateogyListProps
+> = (props) => {
   const { controller, productID } = props;
   const [state, setState] = useState(controller.state);
 
@@ -43,14 +45,14 @@ export const FreqViewedList: React.FC<FreqViewedListProps> = (props) => {
   if (!state.recommendations.length) {
     return (
       <button onClick={() => controller.refresh()}>
-        Freq Viewed - Refresh
+        FreqViewedDifferentCategory
       </button>
     );
   } else {
     return (
       <div>
         <button onClick={() => controller.refresh()}>
-          Freq Viewed - Refresh
+          FreqViewedDifferentCategory
         </button>
         <ul style={{ textAlign: "left" }}>
           {state.recommendations.map((recommendation) => (
@@ -78,4 +80,4 @@ export const FreqViewedList: React.FC<FreqViewedListProps> = (props) => {
   }
 };
 
-export default FreqViewedList;
+export default FreqViewedDifferentCategory;

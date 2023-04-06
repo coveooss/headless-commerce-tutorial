@@ -5,6 +5,7 @@ import {
   buildInteractiveResult,
 } from "@coveo/headless";
 import { headlessEngine } from "../Engine";
+import { Link } from "react-router-dom";
 
 interface ResultListProps {
   controller: ResultListController;
@@ -31,13 +32,19 @@ const sportsResultsTemplate = (result: Result) => {
   const interactiveResultController = buildInteractiveResult(headlessEngine, {
     options: { result: result },
   });
+
   return (
     <li key={result.uniqueId}>
       <div>
         <div className="result-item-header">
-          <a href="#" onClick={() => interactiveResultController.select()}>
+          <Link
+            to={`/products/${result.raw.permanentid as string}`}
+            onClick={() => interactiveResultController.select()}
+            state={{ result: result }}
+          >
             {result.title}
-          </a>
+          </Link>
+
           <button
             className="result-button"
             onClick={() => sendAddToCartEvent(result)}

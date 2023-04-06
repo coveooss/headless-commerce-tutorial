@@ -12,7 +12,11 @@ import {
   SortOrder,
   buildSort,
 } from "@coveo/headless";
-import { buildFrequentlyViewedTogetherList } from "@coveo/headless/product-recommendation";
+import {
+  buildFrequentlyViewedTogetherList,
+  buildFrequentlyBoughtTogetherList,
+  buildFrequentlyViewedDifferentCategoryList,
+} from "@coveo/headless/product-recommendation";
 import { headlessEngine } from "../Engine";
 import { productRecommendationsEngine } from "../Engine";
 
@@ -49,7 +53,24 @@ export const frequentlyViewedTogetherList = buildFrequentlyViewedTogetherList(
   productRecommendationsEngine,
   {
     options: {
-      maxNumberOfRecommendations: 3,
+      maxNumberOfRecommendations: 5,
     },
   }
-);
+); // default number of recs?????
+
+export const frequentlyViewedDifferentCategory =
+  buildFrequentlyViewedDifferentCategoryList(productRecommendationsEngine, {
+    options: {
+      maxNumberOfRecommendations: 5,
+    },
+  });
+
+// export const frequentlyBoughtTogetherList = buildFrequentlyBoughtTogetherList(
+//   productRecommendationsEngine,
+//   {
+//     options: {
+//       maxNumberOfRecommendations: 5,
+//       sku: "SP01007_00003"
+//     },
+//   }
+// );

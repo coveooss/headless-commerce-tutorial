@@ -1,17 +1,17 @@
 import {
-  FrequentlyViewedTogetherList,
+  FrequentlyBoughtTogetherList,
   loadClickAnalyticsActions,
   ProductRecommendation,
 } from "@coveo/headless/product-recommendation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, FunctionComponent } from "react";
 import { productRecommendationsEngine } from "../Engine";
 
-interface FreqViewedListProps {
-  controller: FrequentlyViewedTogetherList;
+interface FreqBoughtListProps {
+  controller: FrequentlyBoughtTogetherList;
   productID: string;
 }
 
-export const FreqViewedList: React.FC<FreqViewedListProps> = (props) => {
+export const FreqBoughtList: React.FC<FreqBoughtListProps> = (props) => {
   const { controller, productID } = props;
   const [state, setState] = useState(controller.state);
 
@@ -35,22 +35,16 @@ export const FreqViewedList: React.FC<FreqViewedListProps> = (props) => {
       logProductRecommendationOpen(recommendation)
     );
   };
-  console.log("INSIDE FREQ VIEWED");
-  console.log(state.skus);
-  controller.setSkus([productID]);
-  console.log(state.skus);
+  console.log(productID);
+  console.log(controller);
 
   if (!state.recommendations.length) {
-    return (
-      <button onClick={() => controller.refresh()}>
-        Freq Viewed - Refresh
-      </button>
-    );
+    return <button onClick={() => controller.refresh()}>Refresh</button>;
   } else {
     return (
       <div>
         <button onClick={() => controller.refresh()}>
-          Freq Viewed - Refresh
+          FreqBought - Refresh
         </button>
         <ul style={{ textAlign: "left" }}>
           {state.recommendations.map((recommendation) => (
@@ -78,4 +72,4 @@ export const FreqViewedList: React.FC<FreqViewedListProps> = (props) => {
   }
 };
 
-export default FreqViewedList;
+export default FreqBoughtList;
