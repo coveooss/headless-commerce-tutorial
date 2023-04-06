@@ -219,6 +219,13 @@ button {
   width: 50%;
 }
 
+.back-to-search {
+  padding: 10px;
+  background: #85eee0;
+  border: none;
+  border-radius: 3px;
+}
+
 .product-heading {
   display: flex;
   flex-direction: column;

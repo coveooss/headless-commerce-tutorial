@@ -65,6 +65,6 @@ export const cartRecommendations = buildCartRecommendationsList(
   {
     options: {
       maxNumberOfRecommendations: 3,
-    }
+    },
   }
 );
