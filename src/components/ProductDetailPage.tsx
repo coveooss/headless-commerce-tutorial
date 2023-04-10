@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { FreqViewedTogether } from "./Recommendations/FreqViewedTogether";
-import CartRecommendations from "./Recommendations/CartRecommendations";
+import { FreqViewedTogether } from "./recommendations/FreqViewedTogether";
+import CartRecommendations from "./recommendations/CartRecommendations";
 import {
   frequentlyViewedTogether as frequentlyViewedTogetherController,
   cartRecommendations as CartRecommendationsController,
