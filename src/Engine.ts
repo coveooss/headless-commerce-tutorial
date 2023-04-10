@@ -1,15 +1,8 @@
 import {
   buildSearchEngine,
-  buildContext,
   loadFieldActions,
   SearchEngine,
 } from "@coveo/headless";
-import {
-  buildProductRecommendationEngine,
-  loadClickAnalyticsActions,
-  ProductRecommendation,
-  ProductRecommendationEngine,
-} from "@coveo/headless/product-recommendation";
 
 const FIELDS = [
   "ec_brand",
@@ -34,16 +27,13 @@ const FIELDS = [
   "permanentid",
 ];
 
-const registerAdditionalFields = (
-  headlessEngine: SearchEngine | ProductRecommendationEngine
-) => {
+const registerAdditionalFields = (headlessEngine: SearchEngine) => {
   const fieldActions = loadFieldActions(headlessEngine);
   headlessEngine.dispatch(fieldActions.registerFieldsToInclude(FIELDS));
-  buildContext(headlessEngine as SearchEngine).add("website", "sports");
   return headlessEngine;
 };
 
-const createSearchEngine = buildSearchEngine({
+const buildEngine = buildSearchEngine({
   configuration: {
     organizationId: "barcagroupproductionkwvdy6lp",
     accessToken: "xx5a7943ef-ea52-42e5-8742-51198cc651f7",
@@ -53,30 +43,5 @@ const createSearchEngine = buildSearchEngine({
     },
   },
 });
-export const headlessEngine = registerAdditionalFields(
-  createSearchEngine
-) as SearchEngine;
 
-const createPREngine = () =>
-  buildProductRecommendationEngine({
-    configuration: {
-      organizationId: "barcagroupproductionkwvdy6lp",
-      accessToken: "xx5a7943ef-ea52-42e5-8742-51198cc651f7",
-    },
-  });
-
-export const frequentlyViewedTogetherPREngine = registerAdditionalFields(
-  createPREngine()
-) as ProductRecommendationEngine;
-
-export const cartRecommendationsPREngine = registerAdditionalFields(
-  createPREngine()
-) as ProductRecommendationEngine;
-
-export const logRecsClick = (
-  recommendation: ProductRecommendation,
-  engine: ProductRecommendationEngine
-) => {
-  const { logProductRecommendationOpen } = loadClickAnalyticsActions(engine);
-  engine.dispatch(logProductRecommendationOpen(recommendation));
-};
+export const headlessEngine = registerAdditionalFields(buildEngine);
