@@ -34,21 +34,19 @@ export const FreqViewedTogether: React.FC<FreqViewedTogetherProps> = (
       <ul>
         {state.recommendations.map((recommendation) => {
           return (
-            <>
-              <li key={recommendation.permanentid}>
-                <h2>
-                  <Link
-                    to={`/products/${recommendation.permanentid as string}`}
-                    state={{ result: recommendation }}
-                    onClick={() =>
-                      logRecsClick(recommendation, productRecommendationsEngine)
-                    }
-                  >
-                    {recommendation.ec_name}
-                  </Link>
-                </h2>
-              </li>
-            </>
+            <li key={recommendation.permanentid}>
+              <h2>
+                <Link
+                  to={`/products/${recommendation.permanentid as string}`}
+                  state={{ result: recommendation }}
+                  onClick={() =>
+                    logRecsClick(recommendation, productRecommendationsEngine)
+                  }
+                >
+                  {recommendation.ec_name}
+                </Link>
+              </h2>
+            </li>
           );
         })}
       </ul>
