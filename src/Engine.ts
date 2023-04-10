@@ -1,8 +1,15 @@
 import {
   buildSearchEngine,
+  buildContext,
   loadFieldActions,
   SearchEngine,
 } from "@coveo/headless";
+import {
+  buildProductRecommendationEngine,
+  loadClickAnalyticsActions,
+  ProductRecommendation,
+  ProductRecommendationEngine,
+} from "@coveo/headless/product-recommendation";
 
 const FIELDS = [
   "ec_brand",
@@ -27,13 +34,16 @@ const FIELDS = [
   "permanentid",
 ];
 
-const registerAdditionalFields = (headlessEngine: SearchEngine) => {
+const registerAdditionalFields = (
+  headlessEngine: SearchEngine | ProductRecommendationEngine
+) => {
   const fieldActions = loadFieldActions(headlessEngine);
   headlessEngine.dispatch(fieldActions.registerFieldsToInclude(FIELDS));
+  buildContext(headlessEngine as SearchEngine).add("website", "sports");
   return headlessEngine;
 };
 
-const buildEngine = buildSearchEngine({
+const createSearchEngine = buildSearchEngine({
   configuration: {
     organizationId: "barcagroupproductionkwvdy6lp",
     accessToken: "xx5a7943ef-ea52-42e5-8742-51198cc651f7",
@@ -43,5 +53,30 @@ const buildEngine = buildSearchEngine({
     },
   },
 });
+export const headlessEngine = registerAdditionalFields(
+  createSearchEngine
+) as SearchEngine;
 
-export const headlessEngine = registerAdditionalFields(buildEngine);
+const createPREngine = () =>
+  buildProductRecommendationEngine({
+    configuration: {
+      organizationId: "barcagroupproductionkwvdy6lp",
+      accessToken: "xx5a7943ef-ea52-42e5-8742-51198cc651f7",
+    },
+  });
+
+export const frequentlyViewedTogetherPREngine = registerAdditionalFields(
+  createPREngine()
+) as ProductRecommendationEngine;
+
+export const cartRecommendationsPREngine = registerAdditionalFields(
+  createPREngine()
+) as ProductRecommendationEngine;
+
+export const logRecsClick = (
+  recommendation: ProductRecommendation,
+  engine: ProductRecommendationEngine
+) => {
+  const { logProductRecommendationOpen } = loadClickAnalyticsActions(engine);
+  engine.dispatch(logProductRecommendationOpen(recommendation));
+};

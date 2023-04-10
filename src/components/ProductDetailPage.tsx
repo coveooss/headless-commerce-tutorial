@@ -1,4 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { FreqViewedTogether } from "./Recommendations/FreqViewedTogether";
+import CartRecommendations from "./Recommendations/CartRecommendations";
+import {
+  frequentlyViewedTogether as frequentlyViewedTogetherController,
+  cartRecommendations as CartRecommendationsController,
+} from "../controllers/controllers";
 
 function ProductDetailPage() {
   const navigate = useNavigate();
@@ -29,6 +35,16 @@ function ProductDetailPage() {
       <button className="back-to-search" onClick={() => navigate("/")}>
         Back to search
       </button>
+      <div className="recs-section">
+        <FreqViewedTogether
+          controller={frequentlyViewedTogetherController}
+          productID={productID}
+        />
+        <CartRecommendations
+          controller={CartRecommendationsController}
+          productID={productID}
+        />
+      </div>
     </div>
   );
 }
