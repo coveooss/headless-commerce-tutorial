@@ -20,7 +20,7 @@ function ProductDetailPage() {
 
   useEffect(() => {
     logViewEvent();
-  }, []);
+  }, [result]);
 
   return (
     <div className="pdp-section">
