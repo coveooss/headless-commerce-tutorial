@@ -1,11 +1,21 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function ProductDetailPage() {
   const navigate = useNavigate();
   let { result } = useLocation().state;
+
   if (result.permanentid == null) result = result.raw;
-  console.log(result);
   const productID = result.permanentid as string;
+  const logViewEvent = () => {
+    coveoua("set", "page", `/products/${productID}`);
+    coveoua("send", "pageview");
+  };
+
+  useEffect(() => {
+    logViewEvent();
+  }, []);
+
   return (
     <div className="pdp-section">
       <div className="product">
