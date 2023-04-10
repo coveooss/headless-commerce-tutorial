@@ -39,7 +39,7 @@ const registerAdditionalFields = (
 ) => {
   const fieldActions = loadFieldActions(headlessEngine);
   headlessEngine.dispatch(fieldActions.registerFieldsToInclude(FIELDS));
-  buildContext(headlessEngine as SearchEngine).add("website", "sports");
+  buildContext(headlessEngine as any).add("website", "sports");
   return headlessEngine;
 };
 
