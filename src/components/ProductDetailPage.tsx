@@ -13,7 +13,7 @@ function ProductDetailPage() {
   const item = result.permanentid ? result : result.raw; // This condition can be translated like so: if the permanentid is defined or thruthy (so no need to check if it's null) the item will be the result, otherwise it will be the raw property of the result.
   const productID = item.permanentid as string;
   const logViewEvent = () => {
-    coveoua("set", "page", `/products/${productID}`);
+    coveoua("set", "page", window.location.pathname);
     coveoua("send", "pageview");
   };
   useEffect(() => {

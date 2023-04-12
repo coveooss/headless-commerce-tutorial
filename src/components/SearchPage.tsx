@@ -19,7 +19,7 @@ import { headlessEngine } from "../Engine";
 
 function SearchPage() {
   const logViewEvent = () => {
-    coveoua("set", "page", "/");
+    coveoua("set", "page", window.location.pathname);
     coveoua("send", "pageview");
   };
 
