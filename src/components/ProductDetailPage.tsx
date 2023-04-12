@@ -1,11 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { FreqViewedTogether } from "./recommendations/FreqViewedTogether";
-import CartRecommendations from "./recommendations/CartRecommendations";
 import {
-  frequentlyViewedTogether as frequentlyViewedTogetherController,
+  frequentlyViewedTogether as FrequentlyViewedTogetherController,
   cartRecommendations as CartRecommendationsController,
 } from "../controllers/controllers";
+import {frequentlyViewedTogetherPREngine,cartRecommendationsPREngine } from "../Engine";
 import { useEffect } from "react";
+import Recommendations from "./Recommendations";
 
 function ProductDetailPage() {
   const navigate = useNavigate();
@@ -42,14 +42,18 @@ function ProductDetailPage() {
         Back to search
       </button>
       <div className="recs-section">
-        <FreqViewedTogether
-          controller={frequentlyViewedTogetherController}
+        <Recommendations
+          label="People also viewed"
+          engine={frequentlyViewedTogetherPREngine}
+          controller={FrequentlyViewedTogetherController}
           productID={productID}
-        />
-        <CartRecommendations
+          />
+          <Recommendations
+          label="Based on your cart"
+          engine={cartRecommendationsPREngine}
           controller={CartRecommendationsController}
           productID={productID}
-        />
+          />
       </div>
     </div>
   );

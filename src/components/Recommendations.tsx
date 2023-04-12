@@ -1,20 +1,21 @@
-import { FrequentlyViewedTogetherList } from "@coveo/headless/product-recommendation";
+import { FrequentlyViewedTogetherList, CartRecommendationsList, ProductRecommendationEngine } from "@coveo/headless/product-recommendation";
 import { useEffect, useState } from "react";
 import {
-  frequentlyViewedTogetherPREngine as productRecommendationsEngine,
   logRecsClick,
-} from "../../Engine";
+} from "../Engine";
 import { Link } from "react-router-dom";
 
-interface FreqViewedTogetherProps {
-  controller: FrequentlyViewedTogetherList;
-  productID: string;
+interface RecommendationsProps {
+    label: string;
+    engine: ProductRecommendationEngine;
+    controller: FrequentlyViewedTogetherList | CartRecommendationsList;
+    productID: string;
+
 }
 
-export const FreqViewedTogether: React.FC<FreqViewedTogetherProps> = (
-  props
+export const Recommendations: React.FC<RecommendationsProps> = (
+  {label, engine, controller, productID}
 ) => {
-  const { controller, productID } = props;
   const [state, setState] = useState(controller.state);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const FreqViewedTogether: React.FC<FreqViewedTogetherProps> = (
 
   return (
     <div className="recs-list">
-      <h2>People also viewed</h2>
+      <h2>{label}</h2>
       <ul>
         {state.recommendations.map((recommendation) => {
           return (
@@ -40,7 +41,7 @@ export const FreqViewedTogether: React.FC<FreqViewedTogetherProps> = (
                   to={`/products/${recommendation.permanentid as string}`}
                   state={{ result: recommendation }}
                   onClick={() =>
-                    logRecsClick(recommendation, productRecommendationsEngine)
+                    logRecsClick(recommendation, engine)
                   }
                 >
                   {recommendation.ec_name}
@@ -54,4 +55,4 @@ export const FreqViewedTogether: React.FC<FreqViewedTogetherProps> = (
   );
 };
 
-export default FreqViewedTogether;
+export default Recommendations;
