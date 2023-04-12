@@ -36,6 +36,11 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
     [controllerInstantResults]
   );
 
+  function ensureOnSearchPage() {
+    const onSearchPage = location.pathname === "/"
+    if (!onSearchPage) navigate("/")
+  }
+
   return (
     <div className="search-box">
       <input
@@ -44,7 +49,7 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             controllerSearchbox.submit();
-            if (location.pathname !== "/") navigate("/");
+            ensureOnSearchPage();
           } else if (e.key === "Escape") {
             controllerSearchbox.clear();
             (e.target as HTMLInputElement).blur();

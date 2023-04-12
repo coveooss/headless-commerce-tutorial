@@ -4,7 +4,8 @@ import { useEffect } from "react";
 function ProductDetailPage() {
   const navigate = useNavigate();
   const { result } = useLocation().state;
-  const item = result.permanentid ? result : result.raw; // This condition can be translated like so: if the permanentid is defined or thruthy (so no need to check if it's null) the item will be the result, otherwise it will be the raw property of the result.
+  const item = result.permanentid ? result : result.raw; // the fields that are required to display product info are fetched by the registerAdditionalFields function under src/Engine.ts. Results from searches contain these fields under .raw property. However, recommendations do not contain the raw property and the fields are present on the recs object itself
+
   const productID = item.permanentid as string;
   const logViewEvent = () => {
     coveoua("set", "page", window.location.pathname);
