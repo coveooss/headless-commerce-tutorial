@@ -211,7 +211,7 @@ button {
 .product {
   margin: 5px;
   padding: 10px;
-  border: 2px solid#00adff;
+  border: 2px solid #00adff;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
