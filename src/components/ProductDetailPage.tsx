@@ -3,33 +3,29 @@ import { useEffect } from "react";
 
 function ProductDetailPage() {
   const navigate = useNavigate();
-  let { result } = useLocation().state;
-
-  if (result.permanentid == null) result = result.raw;
-  const productID = result.permanentid as string;
+  const { result } = useLocation().state;
+  const item = result.permanentid ? result : result.raw; // This condition can be translated like so: if the permanentid is defined or thruthy (so no need to check if it's null) the item will be the result, otherwise it will be the raw property of the result.
+  const productID = item.permanentid as string;
   const logViewEvent = () => {
     coveoua("set", "page", `/products/${productID}`);
     coveoua("send", "pageview");
   };
-
   useEffect(() => {
     logViewEvent();
-  }, [result]);
-
+  }, [item]);
   return (
     <div className="pdp-section">
       <div className="product">
         <div className="product-heading">
-          <h1>{result.ec_name}</h1>
-          <p>${result.ec_price as string}</p>
+          <h1>{item.ec_name}</h1>
+          <p>${item.ec_price as string}</p>
         </div>
-
         <div className="product-info">
           <p>
-            <strong>BRAND:</strong> {result.ec_brand as string}
+            <strong>BRAND:</strong> {item.ec_brand as string}
           </p>
           <p>
-            <strong>RATING:</strong> {result.ec_rating as string} stars
+            <strong>RATING:</strong> {item.ec_rating as string} stars
           </p>
           <p>
             <strong>PRODUCT-ID:</strong> {productID}
