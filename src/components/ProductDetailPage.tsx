@@ -4,8 +4,8 @@ import {
   cartRecommendations as CartRecommendationsController,
 } from "../controllers/controllers";
 import {frequentlyViewedTogetherPREngine,cartRecommendationsPREngine } from "../Engine";
-import { useEffect } from "react";
 import Recommendations from "./Recommendations";
+import { useEffect } from "react";
 
 function ProductDetailPage() {
   const navigate = useNavigate();
