@@ -3,7 +3,10 @@ import {
   frequentlyViewedTogether as FrequentlyViewedTogetherController,
   cartRecommendations as CartRecommendationsController,
 } from "../controllers/controllers";
-import {frequentlyViewedTogetherPREngine,cartRecommendationsPREngine } from "../Engine";
+import {
+  frequentlyViewedTogetherPREngine,
+  cartRecommendationsPREngine,
+} from "../Engine";
 import Recommendations from "./Recommendations";
 import { useEffect } from "react";
 
@@ -48,13 +51,13 @@ function ProductDetailPage() {
           engine={frequentlyViewedTogetherPREngine}
           controller={FrequentlyViewedTogetherController}
           productID={productID}
-          />
-          <Recommendations
+        />
+        <Recommendations
           label="Based on your cart"
           engine={cartRecommendationsPREngine}
           controller={CartRecommendationsController}
           productID={productID}
-          />
+        />
       </div>
     </div>
   );

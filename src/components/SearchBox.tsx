@@ -37,8 +37,8 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
   );
 
   function ensureOnSearchPage() {
-    const onSearchPage = location.pathname === "/"
-    if (!onSearchPage) navigate("/")
+    const onSearchPage = location.pathname === "/";
+    if (!onSearchPage) navigate("/");
   }
 
   return (

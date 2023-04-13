@@ -1,21 +1,25 @@
-import { FrequentlyViewedTogetherList, CartRecommendationsList, ProductRecommendationEngine } from "@coveo/headless/product-recommendation";
-import { useEffect, useState } from "react";
 import {
-  logRecsClick,
-} from "../Engine";
+  FrequentlyViewedTogetherList,
+  CartRecommendationsList,
+  ProductRecommendationEngine,
+} from "@coveo/headless/product-recommendation";
+import { useEffect, useState } from "react";
+import { logRecsClick } from "../Engine";
 import { Link } from "react-router-dom";
 
 interface RecommendationsProps {
-    label: string;
-    engine: ProductRecommendationEngine;
-    controller: FrequentlyViewedTogetherList | CartRecommendationsList;
-    productID: string;
-
+  label: string;
+  engine: ProductRecommendationEngine;
+  controller: FrequentlyViewedTogetherList | CartRecommendationsList;
+  productID: string;
 }
 
-export const Recommendations: React.FC<RecommendationsProps> = (
-  {label, engine, controller, productID}
-) => {
+export const Recommendations: React.FC<RecommendationsProps> = ({
+  label,
+  engine,
+  controller,
+  productID,
+}) => {
   const [state, setState] = useState(controller.state);
 
   useEffect(() => {
@@ -40,9 +44,7 @@ export const Recommendations: React.FC<RecommendationsProps> = (
                 <Link
                   to={`/products/${recommendation.permanentid as string}`}
                   state={{ result: recommendation }}
-                  onClick={() =>
-                    logRecsClick(recommendation, engine)
-                  }
+                  onClick={() => logRecsClick(recommendation, engine)}
                 >
                   {recommendation.ec_name}
                 </Link>
