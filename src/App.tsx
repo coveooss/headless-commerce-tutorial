@@ -19,7 +19,7 @@ declare global {
 
 function App() {
   const logViewEvent = () => {
-    coveoua("set", "page", "/");
+    coveoua("set", "page", window.location.pathname)
     coveoua("send", "pageview");
   };
 
