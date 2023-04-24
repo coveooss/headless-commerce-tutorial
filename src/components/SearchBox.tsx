@@ -3,7 +3,7 @@ import {
   InstantResults as InstantResultsController,
 } from "@coveo/headless";
 import { useEffect, useState } from "react";
-import { redirect, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface SearchBoxProps {
   controllerSearchbox: SearchBoxController;

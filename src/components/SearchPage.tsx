@@ -5,13 +5,11 @@ import Facet from "../components/Facet";
 import Pager from "../components/Pager";
 import Sort from "../components/Sort";
 import {
-  searchBox as SearchBoxController,
   resultList as ResultListController,
   categoryFacet as CategoryFacetController,
   colorFacet as ColorFacetController,
   levelFacet as LevelFacetController,
   pager as PagerController,
-  instantResults as InstantResultsController,
   sort as SortController,
   criteria as SortCriteria,
 } from "../controllers/controllers";
