@@ -1,6 +1,6 @@
 # Coveo Headless Commerce Starter Project
 
-This project serves as a starting point for the [XXXX](https://levelup.coveo.com/learn/courses/headless-tutorial).
+This project serves as a starting point for the [Coveo Headless Tutorial — Create a Commerce Interface](https://levelup.coveo.com/learn/courses/headless-commerce-tutorial) course on Level Up.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
