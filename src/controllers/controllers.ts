@@ -5,6 +5,12 @@ import {
   buildFacet,
   buildPager,
   buildInstantResults,
+  SortCriterion,
+  buildRelevanceSortCriterion,
+  buildDateSortCriterion,
+  buildFieldSortCriterion,
+  SortOrder,
+  buildSort,
 } from "@coveo/headless";
 import { headlessEngine } from "../Engine";
 
@@ -20,3 +26,12 @@ export const facet = buildFacet(headlessEngine, {
 });
 
 export const pager = buildPager(headlessEngine);
+export const criteria: [string, SortCriterion][] = [
+  ["Relevance", buildRelevanceSortCriterion()],
+  ["Date (Ascending)", buildDateSortCriterion(SortOrder.Ascending)],
+  ["Size (Ascending)", buildFieldSortCriterion("size", SortOrder.Ascending)],
+];
+const initialCriterion = criteria[0][1];
+export const sort = buildSort(headlessEngine, {
+  initialState: { criterion: initialCriterion },
+});
