@@ -9,6 +9,7 @@ import {
   resultList as ResultListController,
   facet as FacetController,
   pager as PagerController,
+  instantResults as InstantResultsController,
 } from "./controllers/controllers";
 import { headlessEngine } from "./Engine";
 function App() {
@@ -21,7 +22,10 @@ function App() {
       <header className="app-header">
         <img src={require("./assets/barca.svg").default} alt="barcaLogo" />
         <div className="search-section">
-          <SearchBox controller={SearchBoxController} />
+          <SearchBox
+            controllerSearchbox={SearchBoxController}
+            controllerInstantResults={InstantResultsController}
+          />
         </div>
       </header>
       <div className="app-body">
