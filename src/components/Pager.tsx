@@ -19,6 +19,13 @@ export const Pager: React.FC<PagerProps> = (props) => {
       <nav>
         <button
           className="pager-arrow"
+          disabled={controller.isCurrentPage(1)}
+          onClick={() => controller.selectPage(1)}
+        >
+          {"<<"}
+        </button>
+        <button
+          className="pager-arrow"
           disabled={!state.hasPreviousPage}
           onClick={() => controller.previousPage()}
         >
@@ -40,6 +47,13 @@ export const Pager: React.FC<PagerProps> = (props) => {
           onClick={() => controller.nextPage()}
         >
           {">"}
+        </button>
+        <button
+          className="pager-arrow"
+          disabled={controller.isCurrentPage(state.maxPage)}
+          onClick={() => controller.selectPage(state.maxPage)}
+        >
+          {">>"}
         </button>
       </nav>
     </div>
