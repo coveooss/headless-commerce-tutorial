@@ -21,11 +21,18 @@ export const instantResults = buildInstantResults(headlessEngine, {
   options: { maxResultsPerQuery: 1 },
 });
 
-export const facet = buildFacet(headlessEngine, {
+export const categoryFacet = buildFacet(headlessEngine, {
   options: { field: "ec_category" },
+});
+export const colorFacet = buildFacet(headlessEngine, {
+  options: { field: "cat_color" },
+});
+export const levelFacet = buildFacet(headlessEngine, {
+  options: { field: "cat_level" },
 });
 
 export const pager = buildPager(headlessEngine);
+
 export const criteria: [string, SortCriterion][] = [
   ["Relevance", buildRelevanceSortCriterion()],
   ["Date (Ascending)", buildDateSortCriterion(SortOrder.Ascending)],

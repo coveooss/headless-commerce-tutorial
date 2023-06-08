@@ -16,14 +16,8 @@ const Facet: React.FC<FacetProps> = (props) => {
   );
 
   if (!state.values.length) {
-    return (
-      <div className="facet">
-        <h3>{props.title}</h3>
-        <div>No facet values</div>
-      </div>
-    );
+    return null;
   }
-
   return (
     <div className="facet">
       <h3 className="facet-title">{props.title}</h3>
