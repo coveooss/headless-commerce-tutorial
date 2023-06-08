@@ -12,9 +12,20 @@ import {
   instantResults as InstantResultsController,
 } from "./controllers/controllers";
 import { headlessEngine } from "./Engine";
+
+declare global {
+  function coveoua(action?: string, fieldName?: any, fieldValue?: any): any;
+}
+
 function App() {
+  const logViewEvent = () => {
+    coveoua("set", "page", window.location.pathname)
+    coveoua("send", "pageview");
+  };
+
   useEffect(() => {
     headlessEngine.executeFirstSearch();
+    logViewEvent();
   }, []);
 
   return (
