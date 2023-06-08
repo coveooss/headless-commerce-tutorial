@@ -81,6 +81,8 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
           </div>
         )}
       </div>
+      <button onClick={() => {controllerSearchbox.clear()}}>Clear</button>
+      <button onClick={() => {controllerSearchbox.clear()}}>Submit</button>
     </div>
   );
 };
