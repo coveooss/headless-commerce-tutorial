@@ -199,3 +199,51 @@ button {
   border: none;
   border-radius: 3px;
 }
+
+/* styling for PDP */
+
+.pdp-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product {
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid #00adff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.back-to-search {
+  padding: 10px;
+  background: #85eee0;
+  border: none;
+  border-radius: 3px;
+}
+
+.product-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* styling for recs */
+.recs-section {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.recs-list {
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid #00adff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

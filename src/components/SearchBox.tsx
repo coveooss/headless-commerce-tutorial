@@ -3,6 +3,7 @@ import {
   InstantResults as InstantResultsController,
 } from "@coveo/headless";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface SearchBoxProps {
   controllerSearchbox: SearchBoxController;
@@ -10,6 +11,8 @@ interface SearchBoxProps {
 }
 
 export const SearchBox: React.FC<SearchBoxProps> = (props) => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { controllerSearchbox, controllerInstantResults } = props;
   const [searchboxState, setStateSearchbox] = useState(
     controllerSearchbox.state
@@ -33,6 +36,11 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
     [controllerInstantResults]
   );
 
+  function ensureOnSearchPage() {
+    const onSearchPage = location.pathname === "/";
+    if (!onSearchPage) navigate("/");
+  }
+
   return (
     <div className="search-box">
       <input
@@ -41,6 +49,7 @@ export const SearchBox: React.FC<SearchBoxProps> = (props) => {
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             controllerSearchbox.submit();
+            ensureOnSearchPage();
           } else if (e.key === "Escape") {
             controllerSearchbox.clear();
             (e.target as HTMLInputElement).blur();
