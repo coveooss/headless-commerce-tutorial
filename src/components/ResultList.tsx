@@ -35,7 +35,7 @@ const sportsResultsTemplate = (result: Result) => {
     <li key={result.uniqueId}>
       <div>
         <div className="result-item-header">
-          <a href="#" onClick={() => interactiveResultController.select()}>
+          <a href={result.clickUri} onClick={() => interactiveResultController.select()}>
             {result.title}
           </a>
           <button
