@@ -1,4 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import {
+  frequentlyViewedTogether as FrequentlyViewedTogetherController,
+  cartRecommendations as CartRecommendationsController,
+} from "../controllers/controllers";
+import {
+  frequentlyViewedTogetherPREngine,
+  cartRecommendationsPREngine,
+} from "../Engine";
+import Recommendations from "./Recommendations";
 import { useEffect } from "react";
 
 function ProductDetailPage() {
@@ -36,6 +45,20 @@ function ProductDetailPage() {
       <button className="back-to-search" onClick={() => navigate("/")}>
         Back to search
       </button>
+      <div className="recs-section">
+        <Recommendations
+          label="People also viewed"
+          engine={frequentlyViewedTogetherPREngine}
+          controller={FrequentlyViewedTogetherController}
+          productID={productID}
+        />
+        <Recommendations
+          label="Based on your cart"
+          engine={cartRecommendationsPREngine}
+          controller={CartRecommendationsController}
+          productID={productID}
+        />
+      </div>
     </div>
   );
 }
