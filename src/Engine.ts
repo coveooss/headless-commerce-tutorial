@@ -43,7 +43,7 @@ const buildEngine = buildSearchEngine({
     ),
     search: {
       pipeline: "Sports",
-      searchHub: "MainSearch",
+      searchHub: "Search",
     },
   },
 });
